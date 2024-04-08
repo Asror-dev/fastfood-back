@@ -12,7 +12,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-@CrossOrigin
 public class AuthController {
 
     private final UserService userService;
@@ -36,6 +35,8 @@ try {
     return ResponseEntity.badRequest().body(e.getMessage());
 }
     }
+
+
 
 
 }

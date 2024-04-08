@@ -18,7 +18,5 @@ public class Category {
     private UUID id;
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "category_id")
-    private List<Product> products;
+
 }

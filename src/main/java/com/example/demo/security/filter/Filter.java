@@ -37,6 +37,7 @@ public class Filter extends OncePerRequestFilter {
             Claims user = claimsJws.getPayload();
             String id = user.getSubject();
             User user1 = userRepo.findById(UUID.fromString(id)).get();
+            System.out.println(user1.toString());
             UsernamePasswordAuthenticationToken usn = new UsernamePasswordAuthenticationToken(
                     user1.getPhone(),
                     user1.getPassword(),
