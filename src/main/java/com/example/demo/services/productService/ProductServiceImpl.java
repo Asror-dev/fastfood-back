@@ -23,16 +23,36 @@ public class ProductServiceImpl implements ProductService{
     public void addProduct(ProductDto productDto, UUID categoryId) {
         Category category = categoryRepo.findById(categoryId).orElseThrow();
         Product product = new Product();
-        product.setCategory(category);
+        product.setName(productDto.getName());
+        product.setPrice(productDto.getPrice());
+        product.setDescription(productDto.getDescription());
+        Product product1 = productRepo.save(product);
+
+
+        category.getProducts().add(product1);
+        categoryRepo.save(category);
+
+    }
+
+    @Override
+    public List<Product> getAllProduct() {
+
+        return productRepo.findAll();
+    }
+
+    @Override
+    public void deleteProduct(UUID productId) {
+        productRepo.deleteById(productId);
+    }
+
+    @Override
+    public void updateProduct(ProductDto productDto, UUID productId) {
+        Product product = productRepo.findById(productId).orElseThrow();
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
         product.setDescription(productDto.getDescription());
         productRepo.save(product);
     }
 
-    @Override
-    public List<ProductProjection> getProduct(UUID categoryId) {
 
-        return productRepo.getProductsByCategory_Id(categoryId);
-    }
 }

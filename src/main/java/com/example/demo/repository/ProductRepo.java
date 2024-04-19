@@ -10,5 +10,5 @@ import java.util.UUID;
 
 @Repository
 public interface ProductRepo extends JpaRepository<Product, UUID> {
-    List<ProductProjection> getProductsByCategory_Id(UUID categoryId);
+
 }

@@ -19,4 +19,8 @@ public class Category {
     private String name;
 
 
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Product> products;
+
+
 }
