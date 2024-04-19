@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.CategoryDto;
+import com.example.demo.projection.CategoryProjection;
 import com.example.demo.services.categoryService.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,7 +26,7 @@ public class CategoryController {
         }
     }
 
-    @GetMapping("/get")
+    @GetMapping("/get/products")
     public ResponseEntity<?> getAllCategory() {
         try {
             return ResponseEntity.ok(categoryService.getAllCategory());
@@ -50,6 +52,16 @@ public class CategoryController {
             } catch (Exception e) {
                 return ResponseEntity.badRequest().body(e.getMessage());
             }
+        }
+
+        @GetMapping("/get")
+        public ResponseEntity<?> getCategory() {
+        try {
+            List<CategoryProjection> categoryName = categoryService.getCategoryName();
+            return ResponseEntity.ok(categoryName);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
         }
 
 

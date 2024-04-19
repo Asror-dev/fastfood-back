@@ -2,6 +2,7 @@ package com.example.demo.services.categoryService;
 
 import com.example.demo.dto.CategoryDto;
 import com.example.demo.entity.Category;
+import com.example.demo.projection.CategoryProjection;
 import com.example.demo.repository.CategoryRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,11 @@ public class CategoryServiceImpl implements CategoryService{
         if (category.getProducts().isEmpty()) {
             categoryRepo.deleteById(categoryId);
         }
+    }
+
+    @Override
+    public List<CategoryProjection> getCategoryName() {
+        return categoryRepo.getCategories();
+
     }
 }

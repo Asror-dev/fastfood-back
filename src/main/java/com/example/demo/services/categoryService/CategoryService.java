@@ -2,6 +2,7 @@ package com.example.demo.services.categoryService;
 
 import com.example.demo.dto.CategoryDto;
 import com.example.demo.entity.Category;
+import com.example.demo.projection.CategoryProjection;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,4 +15,7 @@ public interface CategoryService {
     void updateCategory(CategoryDto categoryDto, UUID categoryId);
 
     void deleteCategory(UUID categoryId);
+
+    List<CategoryProjection> getCategoryName();
+
 }
