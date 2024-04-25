@@ -5,6 +5,7 @@ import com.example.demo.services.productService.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
@@ -15,9 +16,9 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping("/add")
-    public ResponseEntity<?> addProduct(@RequestBody ProductDto productDto, @RequestParam UUID categoryId) {
+        public ResponseEntity<?> addProduct(@RequestParam UUID categoryId, @RequestParam(required = false)MultipartFile[] file, @RequestParam String name,@RequestParam String description,@RequestParam Double price) {
         try {
-            productService.addProduct(productDto, categoryId);
+            productService.addProduct(categoryId,file,name,description,price);
             return ResponseEntity.ok("Product added successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
