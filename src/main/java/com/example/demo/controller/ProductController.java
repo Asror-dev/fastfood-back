@@ -16,24 +16,16 @@ import java.util.UUID;
 public class ProductController {
     private final ProductService productService;
 
-//    @PostMapping("/add")
-//        public ResponseEntity<?> addProduct(@RequestParam UUID categoryId, @RequestParam(required = false)MultipartFile[] file, @RequestParam String name,@RequestParam String description,@RequestParam Double price) {
-//        try {
-//            productService.addProduct(categoryId,file,name,description,price);
-//            return ResponseEntity.ok("Product added successfully");
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
-//    }
-@PostMapping("/add")
-public ResponseEntity<?> addProduct(@RequestBody ProductDto productDto) {
-    try {
-        productService.addProduct(productDto.getCategoryId(),productDto.getMultipartFile(),productDto.getName(),productDto.getDescription(),productDto.getPrice());
-        return ResponseEntity.ok("Product added successfully");
-    } catch (Exception e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
+    @PostMapping("/add")
+        public ResponseEntity<?> addProduct(@RequestParam UUID categoryId, @RequestParam(required = false)MultipartFile[] file, @RequestParam String name,@RequestParam String description,@RequestParam Double price) {
+        try {
+            productService.addProduct(categoryId,file,name,description,price);
+            return ResponseEntity.ok("Product added successfully");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
-}
+
     @GetMapping("/get/all")
     public ResponseEntity<?> getAllProduct(){
         try {

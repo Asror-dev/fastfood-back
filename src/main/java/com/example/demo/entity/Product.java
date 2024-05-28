@@ -19,6 +19,7 @@ public class Product {
     private String name;
     private Double price;
     private String description;
+    private Boolean isDeleted;
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Image> images;
